@@ -26,11 +26,12 @@ interface PistonOutput {
 export = <Command>{
   name: "run",
   description: "Runs a snippet of code.",
-  execute: async (message, args, client) => {
+  execute: async (message, args, _client) => {
     if (!args[0])
       return await message.channel.send(
         "You need to provide a language! For a list of langauges, use `langs` as the language parameter."
       );
+
     if (args[0] == "langs") {
       message.channel.startTyping();
       const langsRes = await axios.get(
@@ -44,12 +45,14 @@ export = <Command>{
       message.channel.stopTyping();
       return await message.channel.send(langsEmbed);
     }
+
     message.channel.startTyping();
     const lang = args.shift();
     const langArgs = args;
     const code = message.content.match(/```[a-zA-Z]*\n([\s\S]*?)```/);
     if (!code)
       return await message.channel.send("You need to provide code to execute!");
+
     try {
       const { data: execRes }: { data: PistonOutput } = await axios.post(
         "https://emkc.org/api/v1/piston/execute",
@@ -60,6 +63,7 @@ export = <Command>{
         }
       );
       message.channel.stopTyping();
+
       if (!execRes.stderr)
         return await message.channel.send(
           `${message.author}, your code ran successfully! Output:\n\`\`\`\n${execRes.output}\`\`\``
@@ -70,6 +74,7 @@ export = <Command>{
         );
     } catch (e) {
       message.channel.stopTyping();
+
       switch (<string>e.response.data.message) {
         case "Unsupported language supplied":
           return await message.channel.send(
