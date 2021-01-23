@@ -26,6 +26,7 @@ interface PistonOutput {
 export = <Command>{
   name: "run",
   description: "Runs a snippet of code.",
+  usage: `${process.env.BOT_PREFIX}run language [args...]\n\\\`\\\`\\\`[language]\ncode\n\\\`\\\`\\\``,
   execute: async (message, args, _client) => {
     if (!args[0])
       return await message.channel.send(

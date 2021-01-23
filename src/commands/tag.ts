@@ -3,6 +3,7 @@ import type { Command } from "discord.js";
 export = <Command>{
   name: "tag",
   description: "Get the content of a tag",
+  usage: `${process.env.BOT_PREFIX}tag tagName`,
   execute: async (message, args, client) => {
     if (!args[0])
       return await message.channel.send(
