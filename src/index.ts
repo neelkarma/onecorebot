@@ -53,6 +53,7 @@ client.on("message", async (message) => {
   if (!message.content.startsWith(process.env.BOT_PREFIX!)) return;
 
   const args = message.content
+    .split("\n")[0]
     .slice(process.env.BOT_PREFIX!.length)
     .trim()
     .split(/ +/);
