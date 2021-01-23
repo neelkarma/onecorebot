@@ -2,7 +2,8 @@ import type { Tag } from "discord.js";
 export default <Tag[]>[
   {
     name: "codeblocks",
-    content: "**Codeblocks:**\n\\`\\`\\`language\ncode\n\\`\\`\\`\nFor example:\n\\`\\`\\`python\nprint(\"Hello world!\")\n\\`\\`\\`\nbecomes\n```python\nprint(\"Hello world!\")```\n**Inline Codeblocks:**\n\\`code\\` becomes `code`."
+    content:
+      '**Codeblocks:**\n\\`\\`\\`language\ncode\n\\`\\`\\`\nFor example:\n\\`\\`\\`python\nprint("Hello world!")\n\\`\\`\\`\nbecomes\n```python\nprint("Hello world!")```\n**Inline Codeblocks:**\n\\`code\\` becomes `code`.',
   },
   {
     name: "spoonfeeding",
@@ -11,6 +12,6 @@ export default <Tag[]>[
   },
   {
     name: "tias",
-    content: "https://tryitands.ee/"
-  }
+    content: "https://tryitands.ee/",
+  },
 ];
