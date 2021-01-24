@@ -43,3 +43,5 @@ RULES_CHANNEL_ID=(the id of the desired rules channel)
 - `npm run format` - Formats the code with Prettier.
 ### Additional Information
 - It's recommended to use a text editor that supports LSP or `tsserver` to reap the benefits of autocompletion and other useful features.
+## License
+Licensed under [DBAD](./LICENSE)
