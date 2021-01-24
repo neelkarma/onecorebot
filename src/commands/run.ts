@@ -27,7 +27,7 @@ export = <Command>{
   name: "run",
   description: "Runs a snippet of code.",
   usage: `${process.env.BOT_PREFIX}run language [args...]\n\\\`\\\`\\\`[language]\ncode\n\\\`\\\`\\\``,
-  execute: async (message, args, _client) => {
+  execute: async (message, args) => {
     if (!args[0])
       return await message.channel.send(
         "You need to provide a language! For a list of langauges, use `langs` as the language parameter."
@@ -38,7 +38,7 @@ export = <Command>{
       const langsRes = await axios.get(
         "https://emkc.org/api/v1/piston/versions"
       );
-      let langsEmbed = new MessageEmbed().setTitle("Supported Languages");
+      const langsEmbed = new MessageEmbed().setTitle("Supported Languages");
       let langsEmbedDescription = "";
       for (const lang of <PistonLang[]>langsRes.data)
         langsEmbedDescription += `\`${lang.name}\`, `;

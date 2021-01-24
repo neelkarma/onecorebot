@@ -7,7 +7,7 @@ declare module "discord.js" {
     name: string;
     description: string;
     usage: string;
-    execute: (message: Message, args: string[], client: Client) => any;
+    execute: <T>(message: Message, args: string[], client: Client) => T;
   }
   export interface Tag {
     name: string;

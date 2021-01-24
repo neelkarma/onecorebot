@@ -5,7 +5,7 @@ export = <Command>{
   description: "Get a list of all tags.",
   usage: `${process.env.BOT_PREFIX}tags`,
   execute: async (message, _args, client) => {
-    let tagsEmbed = new MessageEmbed().setTitle("Tag List");
+    const tagsEmbed = new MessageEmbed().setTitle("Tag List");
     let tagsEmbedDescription = "";
     client.tags.each((tag) => (tagsEmbedDescription += `\`${tag.name}\`\n`));
     tagsEmbed.setDescription(tagsEmbedDescription.trim());

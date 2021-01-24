@@ -6,7 +6,7 @@ export = <Command>{
   usage: `${process.env.BOT_PREFIX}help [command]`,
   execute: async (message, args, client) => {
     if (!args[0]) {
-      let helpEmbed = new MessageEmbed().setTitle("Command List");
+      const helpEmbed = new MessageEmbed().setTitle("Command List");
       let helpEmbedDescription = "";
       client.commands.each(
         (command) =>
