@@ -1,8 +1,9 @@
 {
   "name": "onecorebot",
   "version": "0.0.1",
-  "description": "The discord bot for the OneCore server",
+  "description": "The Official(?) Discord Bot for the ONECORE Discord Server",
   "main": "./dist/index.js",
+  "repository": "github:neelkarma/onecorebot",
   "scripts": {
     "start": "cd dist && node index.js",
     "build": "tsc",
