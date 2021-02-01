@@ -55,6 +55,7 @@ RULES_CHANNEL_ID=(the id of the desired rules channel)
 - `npm run build` - Transpiles the source TypeScript into JavaScript in the `/dist/` directory.
 - `npm run watch` - Same as `npm run build`, but reruns when a file change is detected.
 - `npm run format` - Formats the code with Prettier.
+- `npm run lint` - Uses ESLint to lint and fix code.
 
 ### Additional Information
 
