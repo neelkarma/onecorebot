@@ -66,9 +66,14 @@ export = <Command>{
       message.channel.stopTyping();
 
       if (!execRes.stderr)
-        return await message.channel.send(
-          `${message.author}, your code ran successfully! Output:\n\`\`\`\n${execRes.output}\`\`\``
-        );
+        if (!execRes.stdout)
+          return await message.channel.send(
+            `${message.author}, your code ran successfully but didn't have any output! If this is unexpected, please note that there are some limitations to using this command due to security reasons. To see a full list of limitations, check out <https://github.com/engineer-man/piston#security>`
+          );
+        else
+          return await message.channel.send(
+            `${message.author}, your code ran successfully! Output:\n\`\`\`\n${execRes.output}\`\`\``
+          );
       else
         return await message.channel.send(
           `${message.author}, your code errored out! Output:\n\`\`\`\n${execRes.output}\`\`\``
