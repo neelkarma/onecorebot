@@ -60,7 +60,7 @@ client.on("message", async (message) => {
   const commandName = args.shift()!.toLowerCase();
   if (!client.commands.has(commandName)) return;
   try {
-    client.commands.get(commandName)!.execute(message, args, client);
+    client.commands.get(commandName)!.execute(message, args);
   } catch (e) {
     console.error(e);
     return await message.channel.send(
