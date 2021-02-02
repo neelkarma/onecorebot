@@ -15,6 +15,8 @@ export = <Command>{
         `That tag doesn't exist! Use \`${process.env.BOT_PREFIX}tags\` to get a full list of tags.`
       );
 
-    return await message.channel.send(message.client.tags.get(args[0])!.content);
+    return await message.channel.send(
+      message.client.tags.get(args[0])!.content
+    );
   },
 };

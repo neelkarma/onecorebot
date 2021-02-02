@@ -7,7 +7,9 @@ export = <Command>{
   execute: async (message) => {
     const tagsEmbed = new MessageEmbed().setTitle("Tag List");
     let tagsEmbedDescription = "";
-    message.client.tags.each((tag) => (tagsEmbedDescription += `\`${tag.name}\`\n`));
+    message.client.tags.each(
+      (tag) => (tagsEmbedDescription += `\`${tag.name}\`\n`)
+    );
     tagsEmbed.setDescription(tagsEmbedDescription.trim());
     return await message.channel.send(tagsEmbed);
   },
