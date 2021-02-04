@@ -1,4 +1,4 @@
-import { Command, MessageEmbed } from "discord.js";
+import { Command, MessageEmbed, DiscordAPIError } from "discord.js";
 import axios from "axios";
 
 interface PistonLang {
@@ -74,6 +74,10 @@ export = <Command>{
           return await message.channel.send(
             `${message.author}, your code ran successfully! Output:\n\`\`\`\n${execRes.output}\`\`\``
           );
+      else if (execRes.stderr == "Killed")
+        return await message.channel.send(
+          `${message.author}, your code was killed since it ran for more than 3 seconds. Output:\n\`\`\`\n${execRes.output}\`\`\``
+        );
       else
         return await message.channel.send(
           `${message.author}, your code errored out! Output:\n\`\`\`\n${execRes.output}\`\`\``
@@ -81,13 +85,28 @@ export = <Command>{
     } catch (e) {
       message.channel.stopTyping();
 
+      if (e instanceof DiscordAPIError) {
+        switch (e.code) {
+          case 50035:
+            return await message.channel.send(
+              `${message.author}, the output exceeded 2000 characters and couldn't be sent.`
+            );
+          default:
+            return await message.channel.send(
+              `${message.author}, the Discord API returned an error - please notify the devs! (Code: ${e.code})`
+            );
+        }
+      }
+
       switch (<string>e.response.data.message) {
         case "Unsupported language supplied":
           return await message.channel.send(
-            "That language isn't supported. Pass `langs` as the language parameter to get a list of all supported languages."
+            `${message.author}, that language isn't supported. Pass \`langs\` as the language parameter to get a list of all supported languages.`
           );
         default:
-          return await message.channel.send("Error: " + e.request.data.message);
+          return await message.channel.send(
+            `${message.author}, the Piston API returned an error - please notify the devs! (Error Message: ${e.request.data.message})`
+          );
       }
     }
   },
