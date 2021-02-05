@@ -4,7 +4,19 @@ import { readdirSync } from "fs";
 import tagsArray from "./tags";
 dotenv({ path: "../.env" });
 
-const client = new Discord.Client({ws: {intents: ["GUILD_MESSAGES"]}});
+const client = new Discord.Client({ ws: { intents: ["GUILD_MESSAGES"] } });
+
+const hiTests: RegExp[] = [/^hi/, /^hello/, /^heya/];
+const byeTests: RegExp[] = [
+  /^bye/,
+  /^bai/,
+  /^goodbye/,
+  /^goobai/,
+  /^cya/,
+  /^see you/,
+  /^see ya/,
+];
+
 client.commands = new Discord.Collection<unknown, Discord.Command>();
 client.tags = new Discord.Collection<unknown, Discord.Tag>();
 
@@ -34,8 +46,12 @@ client.once("ready", async () => {
 
 client.on("message", async (message) => {
   if (message.author.bot) return;
-  if (/^[Hh]i/.test(message.content) || /^[Hh]ello/.test(message.content))
+
+  if (hiTests.some((test) => test.test(message.content.toLowerCase())))
     return await message.channel.send("Hi!");
+  if (byeTests.some((test) => test.test(message.content.toLowerCase())))
+    return await message.channel.send("Bye!");
+
   if (message.content == "^-^") return await message.channel.send("^-^");
   if (!message.content.startsWith(process.env.BOT_PREFIX!)) return;
 
@@ -44,8 +60,11 @@ client.on("message", async (message) => {
     .slice(process.env.BOT_PREFIX!.length)
     .trim()
     .split(/ +/);
+
   const commandName = args.shift()!.toLowerCase();
+
   if (!client.commands.has(commandName)) return;
+
   try {
     client.commands.get(commandName)!.execute(message, args);
   } catch (e) {
