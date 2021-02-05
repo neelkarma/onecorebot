@@ -4,7 +4,7 @@ import { readdirSync } from "fs";
 import tagsArray from "./tags";
 dotenv({ path: "../.env" });
 
-const client = new Discord.Client({ws: {intents: ["GUILD_MEMBERS", "GUILD_MESSAGES"]}});
+const client = new Discord.Client({ws: {intents: ["GUILD_MESSAGES"]}});
 client.commands = new Discord.Collection<unknown, Discord.Command>();
 client.tags = new Discord.Collection<unknown, Discord.Tag>();
 
@@ -30,19 +30,6 @@ client.once("ready", async () => {
     status: "online",
   });
   return console.log("Bot ready!");
-});
-
-client.on("guildMemberAdd", async (member) => {
-  return await (client.channels.cache.get(
-    process.env.WELCOME_CHANNEL_ID!
-  ) as Discord.TextChannel).send(
-    new Discord.MessageEmbed()
-      .setTitle(`Welcome, ${member.user}!`)
-      .setDescription(
-        `Remember to read the rules in <#${process.env.RULES_CHANNEL_ID}>!`
-      )
-      .setThumbnail(member.user.avatarURL()!)
-  );
 });
 
 client.on("message", async (message) => {
