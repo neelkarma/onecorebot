@@ -4,7 +4,7 @@ import { readdirSync } from "fs";
 import tagsArray from "./tags";
 dotenv({ path: "../.env" });
 
-const client = new Discord.Client();
+const client = new Discord.Client({ws: {intents: ["GUILD_MEMBERS", "GUILD_MESSAGES"]}});
 client.commands = new Discord.Collection<unknown, Discord.Command>();
 client.tags = new Discord.Collection<unknown, Discord.Tag>();
 
