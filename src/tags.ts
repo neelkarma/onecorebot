@@ -3,7 +3,7 @@ export default <Tag[]>[
   {
     name: "codeblocks",
     content:
-      '**Codeblocks:**\n\\`\\`\\`language\ncode\n\\`\\`\\`\nFor example:\n\\`\\`\\`python\nprint("Hello world!")\n\\`\\`\\`\nbecomes\n```python\nprint("Hello world!")```\n**Inline Codeblocks:**\n\\`code\\` becomes `code`.\n\nFun Fact: Every time you use backticks in Discord you save a life.',
+      '**Codeblocks:**\n\\`\\`\\`language\ncode\n\\`\\`\\`\nFor example:\n\\`\\`\\`python\nprint("Hello world!")\n\\`\\`\\`\nbecomes\n```python\nprint("Hello world!")```\n**Inline Codeblocks:**\n\\`code\\` becomes `code`.\n\nFun Fact: Every time you use backticks in Discord, you save a life.',
   },
   {
     name: "spoonfeeding",
