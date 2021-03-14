@@ -15,8 +15,7 @@ The official(?) Discord bot for the ONECORE Discord server.
 1. `git clone https://github.com/neelkarma/onecorebot.git`
 2. `cd onecorebot`
 3. `npm i`
-4. `npm run build`
-5. Create a `.env` file in the root of `onecorebot` and fill in the following:
+4. Create a `.env` file in the root of `onecorebot` and fill in the following:
 
 ```
 BOT_TOKEN=(bot token)
@@ -25,7 +24,7 @@ WELCOME_CHANNEL_ID=(the id of the desired welcome channel)
 RULES_CHANNEL_ID=(the id of the desired rules channel)
 ```
 
-6. `npm start`
+5. `npm start`
 
 ## Developers
 
@@ -48,6 +47,8 @@ BOT_PREFIX=(desired bot prefix)
 WELCOME_CHANNEL_ID=(the id of the desired welcome channel)
 RULES_CHANNEL_ID=(the id of the desired rules channel)
 ```
+
+5. Happy hacking!
 
 ### NPM Scripts
 
