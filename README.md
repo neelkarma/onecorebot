@@ -51,9 +51,8 @@ RULES_CHANNEL_ID=(the id of the desired rules channel)
 
 ### NPM Scripts
 
-- `npm start` - Starts the bot. Make sure you've run `npm run build` first!
-- `npm run build` - Transpiles the source TypeScript into JavaScript in the `/dist/` directory.
-- `npm run watch` - Same as `npm run build`, but reruns when a file change is detected.
+- `npm start` - Starts the bot.
+- `npm run dev` - Starts the bot and restarts when a change to the source code is detected.
 - `npm run format` - Formats the code with Prettier.
 - `npm run lint` - Uses ESLint to lint and fix code.
 

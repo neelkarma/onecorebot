@@ -4,7 +4,9 @@ import { readdirSync } from "fs";
 import tagsArray from "./tags";
 dotenv({ path: "../.env" });
 
-const client = new Discord.Client({ ws: { intents: ["GUILD_MESSAGES", "GUILDS"] } });
+const client = new Discord.Client({
+  ws: { intents: ["GUILD_MESSAGES", "GUILDS"] },
+});
 
 const hiTests: RegExp[] = [/^hi/, /^hello/, /^heya/];
 const byeTests: RegExp[] = [
