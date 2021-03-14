@@ -21,7 +21,7 @@ client.commands = new Discord.Collection<string, Discord.Command>();
 client.tags = new Discord.Collection<string, Discord.Tag>();
 
 const commandFiles = readdirSync("./commands/").filter((file) =>
-  file.endsWith(".js")
+  file.endsWith(".ts")
 );
 
 for (const file of commandFiles) {

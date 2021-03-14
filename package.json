@@ -6,9 +6,8 @@
   "repository": "github:neelkarma/onecorebot",
   "license": "DBAD",
   "scripts": {
-    "start": "cd dist && node index.js",
-    "build": "tsc",
-    "watch": "tsc -w",
+    "start": "cd src && ts-node --files .",
+    "dev": "cd src && ts-node-dev --files .",
     "format": "prettier -w .",
     "lint": "eslint . --fix"
   },
@@ -24,6 +23,8 @@
     "@typescript-eslint/parser": "^4.14.0",
     "eslint": "^7.18.0",
     "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "ts-node-dev": "^1.1.6",
     "typescript": "^4.1.3"
   }
 }
