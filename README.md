@@ -48,6 +48,8 @@ WELCOME_CHANNEL_ID=(the id of the desired welcome channel)
 RULES_CHANNEL_ID=(the id of the desired rules channel)
 ```
 
+5. Happy hacking!
+
 ### NPM Scripts
 
 - `yarn start` - Starts the bot.
