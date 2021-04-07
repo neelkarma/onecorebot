@@ -26,14 +26,14 @@ const commandFiles = readdirSync("./commands/").filter((file) =>
   file.endsWith(".ts")
 );
 
-for (const file of commandFiles) {
+commandFiles.forEach((command) => {
   const command: Discord.Command = require(`./commands/${file}`);
   client.commands.set(command.name, command);
-}
+});
 
-for (const tag of tagsArray) {
+tagsArray.forEach((tag) => {
   client.tags.set(tag.name, tag);
-}
+});
 
 client.once("ready", async () => {
   client.user?.setPresence({
