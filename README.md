@@ -8,15 +8,14 @@ The official(?) Discord bot for the ONECORE Discord server.
 
 - Git
 - NodeJS (v14.15.4 minimum)
-- `npm`
+- `yarn`
 
 ### The Steps
 
 1. `git clone https://github.com/neelkarma/onecorebot.git`
 2. `cd onecorebot`
-3. `npm i`
-4. `npm run build`
-5. Create a `.env` file in the root of `onecorebot` and fill in the following:
+3. `yarn install`
+4. Create a `.env` file in the root of `onecorebot` and fill in the following:
 
 ```
 BOT_TOKEN=(bot token)
@@ -25,7 +24,7 @@ WELCOME_CHANNEL_ID=(the id of the desired welcome channel)
 RULES_CHANNEL_ID=(the id of the desired rules channel)
 ```
 
-6. `npm start`
+5. `yarn start`
 
 ## Developers
 
@@ -33,13 +32,13 @@ RULES_CHANNEL_ID=(the id of the desired rules channel)
 
 - Git
 - NodeJS (v14.15.4 minimum)
-- `npm`
+- `yarn`
 
 ### Getting Started
 
 1. `git clone https://github.com/neelkarma/onecorebot.git`
 2. `cd onecorebot`
-3. `npm i`
+3. `yarn install`
 4. Create a `.env` file in the root of `onecorebot` and fill in the following:
 
 ```
@@ -51,14 +50,14 @@ RULES_CHANNEL_ID=(the id of the desired rules channel)
 
 ### NPM Scripts
 
-- `npm start` - Starts the bot.
-- `npm run dev` - Starts the bot and restarts when a change to the source code is detected.
-- `npm run format` - Formats the code with Prettier.
-- `npm run lint` - Uses ESLint to lint and fix code.
+- `yarn start` - Starts the bot.
+- `yarn run dev` - Starts the bot and restarts when a change to the source code is detected.
+- `yarn run format` - Formats the code with Prettier.
+- `yarn run lint` - Uses ESLint to lint and fix code.
 
 ### Additional Information
 
-- It's recommended to use a text editor that supports LSP or `tsserver` to reap the benefits of autocompletion and other useful features.
+- It's recommended to use a text editor or plugin that supports TypeScript to reap the benefits of autocompletion and other useful features.
 
 ## License
 
