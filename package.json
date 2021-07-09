@@ -9,7 +9,7 @@
     "start": "cd src && ts-node --files .",
     "dev": "cd src && ts-node-dev --files .",
     "format": "prettier -w .",
-    "lint": "eslint . --fix"
+    "lint": "tsc --noEmit"
   },
   "author": "chickensalt",
   "dependencies": {

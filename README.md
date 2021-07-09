@@ -33,7 +33,7 @@ RULES_CHANNEL_ID=(the id of the desired rules channel)
 - `yarn start` - Starts the bot.
 - `yarn dev` - Starts the bot and restarts when a change to the source code is detected.
 - `yarn format` - Formats the code with Prettier.
-- `yarn lint` - Uses ESLint to lint and fix code.
+- `yarn lint` - Lints the code with `tsc`.
 
 ## License
 
