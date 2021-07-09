@@ -26,7 +26,7 @@ const commandFiles = readdirSync("./commands/").filter((file) =>
   file.endsWith(".ts")
 );
 
-commandFiles.forEach((command) => {
+commandFiles.forEach((file) => {
   const command: Discord.Command = require(`./commands/${file}`);
   client.commands.set(command.name, command);
 });
