@@ -4,7 +4,7 @@
   "description": "The Official(?) Discord Bot for the ONECORE Discord Server",
   "main": "./dist/index.js",
   "repository": "github:neelkarma/onecorebot",
-  "license": "DBAD",
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "start": "cd src && ts-node --files .",
     "dev": "cd src && ts-node-dev --files .",
