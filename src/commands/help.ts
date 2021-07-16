@@ -5,6 +5,14 @@ export = <Command>{
   description: "This command helps.",
   usage: `${process.env.BOT_PREFIX}help [command]`,
   execute: async (message, args) => {
+    const prankMessage = await message.channel.send(
+      "Help? Only God can help you, and possibly yourself."
+    );
+    await new Promise((resolve) => setTimeout(resolve, 4000));
+    const prankMessage2 = await message.channel.send("jk lol");
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    await Promise.all([prankMessage.delete(), prankMessage2.delete()]);
+
     if (!args[0]) {
       const helpEmbed = new MessageEmbed().setTitle("Command List");
       let helpEmbedDescription = "";
