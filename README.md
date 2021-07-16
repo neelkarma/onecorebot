@@ -20,6 +20,7 @@ BOT_TOKEN=(bot token)
 BOT_PREFIX=(desired bot prefix)
 WELCOME_CHANNEL_ID=(the id of the desired welcome channel)
 RULES_CHANNEL_ID=(the id of the desired rules channel)
+PORT=(web server port)
 ```
 
 4. `yarn start`

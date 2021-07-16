@@ -2,7 +2,12 @@ import * as Discord from "discord.js";
 import { config as dotenv } from "dotenv";
 import { readdirSync } from "fs";
 import tagsArray from "./tags";
+import { createServer } from "http";
 dotenv({ path: "../.env" });
+
+createServer((req, res) => {
+  res.end("Request Successful");
+}).listen(process.env.PORT ?? 8000);
 
 const client = new Discord.Client({
   ws: { intents: ["GUILD_MESSAGES", "GUILDS"] },
