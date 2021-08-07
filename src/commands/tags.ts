@@ -11,6 +11,8 @@ export = <Command>{
       (tag: Tag) => (tagsEmbedDescription += `\`${tag.name}\`\n`)
     );
     tagsEmbed.setDescription(tagsEmbedDescription.trim());
-    return await message.channel.send({ embeds: [tagsEmbed] });
+    return await message.reply({
+      embeds: [tagsEmbed],
+    });
   },
 };

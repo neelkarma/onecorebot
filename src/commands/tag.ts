@@ -6,17 +6,15 @@ export = <Command>{
   usage: `${process.env.BOT_PREFIX}tag tagName`,
   execute: async (message, args) => {
     if (!args[0])
-      return await message.channel.send(
+      return await message.reply(
         `You didn't provide a tag! Use \`${process.env.BOT_PREFIX}tags\` to get a full list of tags.`
       );
 
     if (!message.client.tags.has(args[0]))
-      return await message.channel.send(
+      return await message.reply(
         `That tag doesn't exist! Use \`${process.env.BOT_PREFIX}tags\` to get a full list of tags.`
       );
 
-    return await message.channel.send(
-      message.client.tags.get(args[0])!.content
-    );
+    return await message.reply(message.client.tags.get(args[0])!.content);
   },
 };

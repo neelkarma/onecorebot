@@ -6,7 +6,7 @@ export = <Command>{
   description: "This command helps.",
   usage: `${process.env.BOT_PREFIX}help [command]`,
   execute: async (message, args) => {
-    const prankMessage = await message.channel.send(
+    const prankMessage = await message.reply(
       "Help? Only God can help you, and possibly yourself."
     );
     await wait(4000);
@@ -22,7 +22,7 @@ export = <Command>{
           (helpEmbedDescription += `\`${process.env.BOT_PREFIX}${command.name}\` - ${command.description}\n`)
       );
       helpEmbed.setDescription(helpEmbedDescription.trim());
-      return await message.channel.send({ embeds: [helpEmbed] });
+      return await message.reply({ embeds: [helpEmbed] });
     }
     if (!message.client.commands.has(args[0]))
       return await message.channel.send(

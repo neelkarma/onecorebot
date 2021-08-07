@@ -83,8 +83,8 @@ client.on("messageCreate", async (message) => {
     client.commands.get(commandName)!.execute(message, args);
   } catch (e) {
     console.error(e);
-    await message.channel.send(
-      `${message.author}, something unexpected happened and I wasn't able to execute your command.`
+    await message.reply(
+      "Something unexpected happened and I wasn't able to execute your command."
     );
   }
 });
