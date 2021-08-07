@@ -29,7 +29,7 @@ export = <Command>{
   usage: `${process.env.BOT_PREFIX}run language [args...]\n\\\`\\\`\\\`[language]\ncode\n\\\`\\\`\\\``,
   execute: async (message, args) => {
     if (!args[0])
-      return await message.channel.send(
+      return await message.reply(
         "You need to provide a language! For a list of langauges, use `langs` as the language parameter."
       );
 
@@ -43,7 +43,7 @@ export = <Command>{
       for (const lang of <PistonLang[]>langsRes.data)
         langsEmbedDescription += `\`${lang.name}\`, `;
       langsEmbed.setDescription(langsEmbedDescription.slice(0, -2));
-      return await message.channel.send({ embeds: [langsEmbed] });
+      return await message.reply({ embeds: [langsEmbed] });
     }
 
     message.channel.sendTyping();
@@ -51,7 +51,7 @@ export = <Command>{
     const langArgs = args;
     const code = message.content.match(/```[a-zA-Z]*\n([\s\S]*?)```/);
     if (!code)
-      return await message.channel.send("You need to provide code to execute!");
+      return await message.reply("You need to provide code to execute!");
 
     try {
       const { data: execRes }: { data: PistonOutput } = await axios.post(

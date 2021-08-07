@@ -25,11 +25,11 @@ export = <Command>{
       return await message.reply({ embeds: [helpEmbed] });
     }
     if (!message.client.commands.has(args[0]))
-      return await message.channel.send(
+      return await message.reply(
         `That command doens't exist! Use \`${process.env.BOT_PREFIX}help\` by itself for a full list of commands.`
       );
     const helpCommand = message.client.commands.get(args[0])!;
-    return await message.channel.send(
+    return await message.reply(
       `\`${process.env.BOT_PREFIX}${helpCommand.name}\` - *${helpCommand.description}*\n__**Usage:**__\n${helpCommand.usage}`
     );
   },
