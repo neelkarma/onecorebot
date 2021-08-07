@@ -1,16 +1,16 @@
 import * as Discord from "discord.js";
 import { config as dotenv } from "dotenv";
 import { readdirSync } from "fs";
-import tagsArray from "./tags";
+import tags from "./tags";
 import { createServer } from "http";
 dotenv({ path: "../.env" });
 
-createServer((req, res) => {
+createServer((_, res) => {
   res.end("Request Successful");
 }).listen(process.env.PORT ?? 8000);
 
 const client = new Discord.Client({
-  ws: { intents: ["GUILD_MESSAGES", "GUILDS"] },
+  intents: [Discord.Intents.FLAGS.GUILD_MESSAGES, Discord.Intents.FLAGS.GUILDS],
 });
 
 const hiTests: RegExp[] = [/^hi/, /^hello/, /^heya/];
@@ -25,7 +25,7 @@ const byeTests: RegExp[] = [
 ];
 
 client.commands = new Discord.Collection<string, Discord.Command>();
-client.tags = new Discord.Collection<string, Discord.Tag>();
+client.tags = tags;
 
 const commandFiles = readdirSync("./commands/").filter((file) =>
   file.endsWith(".ts")
@@ -36,30 +36,37 @@ commandFiles.forEach((file) => {
   client.commands.set(command.name, command);
 });
 
-tagsArray.forEach((tag) => {
-  client.tags.set(tag.name, tag);
-});
-
 client.once("ready", async () => {
   client.user?.setPresence({
-    activity: {
-      name: `for messages starting with "${process.env.BOT_PREFIX}"`,
-      type: "WATCHING",
-    },
+    activities: [
+      {
+        name: `for messages starting with "${process.env.BOT_PREFIX}"`,
+        type: "WATCHING",
+      },
+    ],
     status: "online",
   });
   return console.log("Bot ready!");
 });
 
-client.on("message", async (message) => {
+client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
-  if (hiTests.some((test) => test.test(message.content.toLowerCase())))
-    return await message.channel.send("Hi!");
-  if (byeTests.some((test) => test.test(message.content.toLowerCase())))
-    return await message.channel.send("Bye!");
+  if (hiTests.some((test) => test.test(message.content.toLowerCase()))) {
+    message.channel.send("Hi!");
+    return;
+  }
 
-  if (message.content == "^-^") return await message.channel.send("^-^");
+  if (byeTests.some((test) => test.test(message.content.toLowerCase()))) {
+    message.channel.send("Bye!");
+    return;
+  }
+
+  if (message.content == "^-^") {
+    await message.channel.send("^-^");
+    return;
+  }
+
   if (!message.content.startsWith(process.env.BOT_PREFIX!)) return;
 
   const args = message.content
@@ -76,7 +83,7 @@ client.on("message", async (message) => {
     client.commands.get(commandName)!.execute(message, args);
   } catch (e) {
     console.error(e);
-    return await message.channel.send(
+    await message.channel.send(
       `${message.author}, something unexpected happened and I wasn't able to execute your command.`
     );
   }

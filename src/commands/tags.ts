@@ -1,4 +1,4 @@
-import { Command, MessageEmbed } from "discord.js";
+import { Command, MessageEmbed, Tag } from "discord.js";
 
 export = <Command>{
   name: "tags",
@@ -8,9 +8,9 @@ export = <Command>{
     const tagsEmbed = new MessageEmbed().setTitle("Tag List");
     let tagsEmbedDescription = "";
     message.client.tags.each(
-      (tag) => (tagsEmbedDescription += `\`${tag.name}\`\n`)
+      (tag: Tag) => (tagsEmbedDescription += `\`${tag.name}\`\n`)
     );
     tagsEmbed.setDescription(tagsEmbedDescription.trim());
-    return await message.channel.send(tagsEmbed);
+    return await message.channel.send({ embeds: [tagsEmbed] });
   },
 };

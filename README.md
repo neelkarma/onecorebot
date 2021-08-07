@@ -4,7 +4,7 @@ The official(?) Discord bot for the ONECORE Discord server.
 
 ## Hosting
 
-1. Make sure Git, NodeJS and Yarn are installed.
+1. Make sure Git, NodeJS (Latest, not LTS) and Yarn are installed.
 2. Run these commands:
 
 ```sh

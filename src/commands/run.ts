@@ -34,7 +34,7 @@ export = <Command>{
       );
 
     if (args[0] == "langs") {
-      message.channel.startTyping();
+      message.channel.sendTyping();
       const langsRes = await axios.get(
         "https://emkc.org/api/v1/piston/versions"
       );
@@ -43,11 +43,10 @@ export = <Command>{
       for (const lang of <PistonLang[]>langsRes.data)
         langsEmbedDescription += `\`${lang.name}\`, `;
       langsEmbed.setDescription(langsEmbedDescription.slice(0, -2));
-      message.channel.stopTyping();
-      return await message.channel.send(langsEmbed);
+      return await message.channel.send({ embeds: [langsEmbed] });
     }
 
-    message.channel.startTyping();
+    message.channel.sendTyping();
     const lang = args.shift();
     const langArgs = args;
     const code = message.content.match(/```[a-zA-Z]*\n([\s\S]*?)```/);
@@ -63,49 +62,46 @@ export = <Command>{
           args: langArgs,
         }
       );
-      message.channel.stopTyping();
 
       if (!execRes.stderr)
         if (!execRes.stdout)
-          return await message.channel.send(
-            `${message.author}, your code ran successfully but didn't have any output! If this is unexpected, please note that there are some limitations to using this command due to security reasons. To see a full list of limitations, check out <https://github.com/engineer-man/piston#security>`
+          return await message.reply(
+            `Your code ran successfully but didn't have any output! If this is unexpected, please note that there are some limitations to using this command due to security reasons. To see a full list of limitations, check out <https://github.com/engineer-man/piston#security>`
           );
         else
-          return await message.channel.send(
-            `${message.author}, your code ran successfully! Output:\n\`\`\`\n${execRes.output}\`\`\``
+          return await message.reply(
+            `Your code ran successfully! Output:\n\`\`\`\n${execRes.output}\`\`\``
           );
       else if (execRes.stderr == "Killed")
-        return await message.channel.send(
-          `${message.author}, your code was killed since it ran for more than 3 seconds. Output:\n\`\`\`\n${execRes.output}\`\`\``
+        return await message.reply(
+          `Your code was killed since it ran for more than 3 seconds. Output:\n\`\`\`\n${execRes.output}\`\`\``
         );
       else
-        return await message.channel.send(
-          `${message.author}, your code errored out! Output:\n\`\`\`\n${execRes.output}\`\`\``
+        return await message.reply(
+          `Your code errored out! Output:\n\`\`\`\n${execRes.output}\`\`\``
         );
     } catch (e) {
-      message.channel.stopTyping();
-
       if (e instanceof DiscordAPIError) {
         switch (e.code) {
           case 50035:
-            return await message.channel.send(
-              `${message.author}, the output exceeded 2000 characters and couldn't be sent.`
+            return await message.reply(
+              `Your program's output exceeded 2000 characters and couldn't be sent.`
             );
           default:
-            return await message.channel.send(
-              `${message.author}, the Discord API returned an error - please notify the devs! (Code: ${e.code})`
+            return await message.reply(
+              `The Discord API returned an error - please notify the bot devs! (Code: ${e.code})`
             );
         }
       }
 
       switch (<string>e.response.data.message) {
         case "Unsupported language supplied":
-          return await message.channel.send(
-            `${message.author}, that language isn't supported. Pass \`langs\` as the language parameter to get a list of all supported languages.`
+          return await message.reply(
+            `That language isn't supported. Pass \`langs\` as the language parameter to get a list of all supported languages.`
           );
         default:
-          return await message.channel.send(
-            `${message.author}, the Piston API returned an error - please notify the devs! (Error Message: ${e.request.data.message})`
+          return await message.reply(
+            `The Piston API returned an error - please notify the bot devs! (Error Message: ${e.request.data.message})`
           );
       }
     }
